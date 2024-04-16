@@ -27,40 +27,66 @@ public class ShippingLineImpl implements ShippingLine {
 
     @Override
     public void addShip(String id, String name, int nArmChairs, int nCabins2, int nCabins4, int nParkingLots, int unLoadTimeinMinutes) {
-
+        if (ships.containsKey(id)) {
+            // Actualizar los datos del barco existente o lanzar excepción si no se permite duplicado
+            // throw new ShipAlreadyExistsException("Ship with ID " + id + " already exists.");
+            return; // Si simplemente vamos a actualizar el existente sin lanzar excepción
+        }
+        if (ships.size() >= MAX_NUM_SHIPS) {
+            //throw new MaxExceededException("Maximum number of ships reached.");
+        }
+        Ship newShip = new Ship(id, name, nArmChairs, nCabins2, nCabins4, nParkingLots, unLoadTimeinMinutes);
+        ships.put(id, newShip);
     }
+
 
     @Override
     public void addRoute(String id, String beginningPort, String arrivalPort) {
-
+        if (routes.containsKey(id)) {
+            // Actualizar la ruta existente o lanzar una excepción si no se permiten duplicados
+            return;
+        }
+        if (routes.size() >= MAX_NUM_ROUTES) {
+            //throw new MaxCapacityException("Maximum number of routes reached.");
+        }
+        Route newRoute = new Route(id, beginningPort, arrivalPort);
+        routes.put(id, newRoute);
     }
+
 
     @Override
     public void addClient(String id, String name, String surname) {
-
+        if (clients.containsKey(id)) {
+            // Manejar posibles duplicados
+            return;
+        }
+        if (clients.size() >= MAX_CLIENTS) {
+            //throw new MaxCapacityException("Maximum number of clients reached.");
+        }
+        //Client newClient = new Client(id, name, surname);
+       // clients.put(id, newClient);
     }
+
 
 
     @Override
-    public void addVoyage(String id, Date departureDt, Date arrivalDt, String idShip, String idRoute)
-            throws ShipNotFoundException, RouteNotFoundException, ParkingFullException, NoAcommodationAvailableException {
+    public void addVoyage(String id, Date departureDt, Date arrivalDt, String idShip, String idRoute) throws ShipNotFoundException, RouteNotFoundException, ParkingFullException, NoAcommodationAvailableException {
         Ship ship = ships.get(idShip);
         if (ship == null) {
-            throw new ShipNotFoundException("Ship with ID " + idShip + " not found.");
+            throw new ShipNotFoundException("Ship not found with ID: " + idShip);
         }
-
         Route route = routes.get(idRoute);
         if (route == null) {
-            throw new RouteNotFoundException();
+           // throw new RouteNotFoundException("Route not found with ID: " + idRoute);
         }
-
-        // Aquí podrías verificar si hay espacio suficiente en el barco para el tipo de acomodación especificado
-        // y lanzar las excepciones ParkingFullException o NoAcommodationAvailableException si es necesario
-
-
-        Voyage voyage = new Voyage(id, departureDt, arrivalDt, ship, route); // Esto creo que sera por en la clase Voyage he añadido atributos y actualizado el constructor
-        voyages.put(id, voyage);
+        if (voyages.containsKey(id)) {
+            // Decidir si actualizar o lanzar excepción
+            return;
+        }
+        //Voyage newVoyage = new Voyage(id, departureDt, arrivalDt, ship, route);
+        //voyages.put(id, newVoyage);
     }
+
 
 
     @Override
