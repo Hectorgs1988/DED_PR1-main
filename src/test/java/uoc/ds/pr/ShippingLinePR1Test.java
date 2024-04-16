@@ -9,6 +9,8 @@ import org.junit.Test;
 import uoc.ds.pr.exceptions.*;
 import uoc.ds.pr.model.*;
 import uoc.ds.pr.util.DateUtils;
+import uoc.ds.pr.model.ParkingReservation;
+
 
 public class ShippingLinePR1Test {
 

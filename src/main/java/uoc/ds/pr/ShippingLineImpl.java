@@ -6,13 +6,24 @@ import edu.uoc.ds.adt.sequential.LinkedList;
 import edu.uoc.ds.adt.sequential.List;
 import edu.uoc.ds.traversal.Iterator;
 import uoc.ds.pr.exceptions.*;
-import uoc.ds.pr.model.*;
+//import uoc.ds.pr.model.*;
+import uoc.ds.pr.model.Ship;
+import uoc.ds.pr.model.Route;
+import uoc.ds.pr.model.Voyage;
+import uoc.ds.pr.model.Client;
+import uoc.ds.pr.model.Reservation;
 import uoc.ds.pr.util.DSArray;
 import uoc.ds.pr.util.DSLinkedList;
 import uoc.ds.pr.util.OrderedVector;
+import java.util.Map;
+import java.util.HashMap;
 
 
 public class ShippingLineImpl implements ShippingLine {
+    private Map<String, Ship> ships = new HashMap<>();
+    private Map<String, Route> routes = new HashMap<>();
+    private Map<String, Client> clients = new HashMap<>();
+    private Map<String, Voyage> voyages = new HashMap<>();
 
     @Override
     public void addShip(String id, String name, int nArmChairs, int nCabins2, int nCabins4, int nParkingLots, int unLoadTimeinMinutes) {
@@ -29,10 +40,28 @@ public class ShippingLineImpl implements ShippingLine {
 
     }
 
-    @Override
-    public void addVoyage(String id, Date departureDt, Date arrivalDt, String idShip, String idRoute) throws ShipNotFoundException, RouteNotFoundException, ParkingFullException, NoAcommodationAvailableException {
 
+    @Override
+    public void addVoyage(String id, Date departureDt, Date arrivalDt, String idShip, String idRoute)
+            throws ShipNotFoundException, RouteNotFoundException, ParkingFullException, NoAcommodationAvailableException {
+        Ship ship = ships.get(idShip);
+        if (ship == null) {
+            throw new ShipNotFoundException("Ship with ID " + idShip + " not found.");
+        }
+
+        Route route = routes.get(idRoute);
+        if (route == null) {
+            throw new RouteNotFoundException();
+        }
+
+        // Aquí podrías verificar si hay espacio suficiente en el barco para el tipo de acomodación especificado
+        // y lanzar las excepciones ParkingFullException o NoAcommodationAvailableException si es necesario
+
+
+        Voyage voyage = new Voyage(id, departureDt, arrivalDt, ship, route); // Esto creo que sera por en la clase Voyage he añadido atributos y actualizado el constructor
+        voyages.put(id, voyage);
     }
+
 
     @Override
     public void reserve(String[] clients, String idVoyage, AccommodationType accommodationType, String idVehicle, double price) throws ClientNotFoundException, VoyageNotFoundException, ParkingFullException, NoAcommodationAvailableException, MaxExceededException, ReservationAlreadyExistsException {

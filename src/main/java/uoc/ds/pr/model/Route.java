@@ -38,4 +38,8 @@ public class Route {
     public void setArrivalPort(String arrivalPort) {
         this.arrivalPort = arrivalPort;
     }
+
+    public int numVoyages() {
+        return 0;
+    }
 }
