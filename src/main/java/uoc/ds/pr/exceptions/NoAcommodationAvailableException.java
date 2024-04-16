@@ -1,4 +1,4 @@
 package uoc.ds.pr.exceptions;
 
-public class NoAcommodationAvailableException extends Exception{
+public class NoAcommodationAvailableException extends DSException{
 }

@@ -27,13 +27,9 @@ public class ShippingLineImpl implements ShippingLine {
 
     @Override
     public void addShip(String id, String name, int nArmChairs, int nCabins2, int nCabins4, int nParkingLots, int unLoadTimeinMinutes) {
-        if (ships.containsKey(id)) {
-            // Actualizar los datos del barco existente o lanzar excepción si no se permite duplicado
-            // throw new ShipAlreadyExistsException("Ship with ID " + id + " already exists.");
-            return; // Si simplemente vamos a actualizar el existente sin lanzar excepción
-        }
+
         if (ships.size() >= MAX_NUM_SHIPS) {
-            //throw new MaxExceededException("Maximum number of ships reached.");
+            throw new MaxExceededException("Maximum number of ships reached.");
         }
         Ship newShip = new Ship(id, name, nArmChairs, nCabins2, nCabins4, nParkingLots, unLoadTimeinMinutes);
         ships.put(id, newShip);

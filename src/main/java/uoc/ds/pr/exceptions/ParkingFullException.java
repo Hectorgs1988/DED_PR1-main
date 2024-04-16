@@ -1,4 +1,4 @@
 package uoc.ds.pr.exceptions;
 
-public class ParkingFullException extends Exception{
+public class ParkingFullException extends DSException{
 }

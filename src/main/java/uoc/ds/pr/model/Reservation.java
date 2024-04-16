@@ -2,7 +2,8 @@ package uoc.ds.pr.model;
 import java.util.List;
 import uoc.ds.pr.ShippingLine;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
+import edu.uoc.ds.traversal.Iterator;
 
 
 public class Reservation {
@@ -15,10 +16,8 @@ public class Reservation {
 
     public Reservation(Voyage voyage, List<Client> clients, boolean hasParkingLot) {
         this.voyage = voyage;
-        //this.clients = clients;
         this.clients = new ArrayList<>();
         this.hasParkingLot = hasParkingLot;
-        this.accommodationType = accommodationType;
     }
 
 
@@ -32,13 +31,13 @@ public class Reservation {
         this.voyage = voyage;
     }
 
-    /*public List<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
-    }*/
-
-    public Iterator<Client> getClients() {
-        return clients.iterator();
     }
+
+    /*public Iterator<Client> getClients() {
+        return clients.iterator();
+    }*/
 
     public void setClients(List<Client> clients) {
         this.clients = clients;

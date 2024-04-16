@@ -1,12 +1,14 @@
 package uoc.ds.pr.model;
+import java.util.List;
+import uoc.ds.pr.ShippingLine;
 
 public class ParkingReservation extends Reservation {
     private String idVehicle;
     private int unLoadTimeInMinutes;
 
-    //public Reservation(Voyage voyage, List<Client> clients, boolean hasParkingLot)
-    public ParkingReservation(String id, Voyage voyage, String idVehicle, int unLoadTimeInMinutes) {
-        super(id, voyage);  // Suponiendo que Reservation tiene un constructor que acepta estos parámetros
+
+    public ParkingReservation(Voyage voyage, List<Client> clients, boolean hasParkingLot, ShippingLine.AccommodationType accommodationType, String idVehicle, int unLoadTimeInMinutes) {
+        super(voyage, clients, hasParkingLot);
         this.idVehicle = idVehicle;
         this.unLoadTimeInMinutes = unLoadTimeInMinutes;
     }

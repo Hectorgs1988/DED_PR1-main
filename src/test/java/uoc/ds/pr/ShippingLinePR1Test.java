@@ -1,6 +1,7 @@
 package uoc.ds.pr;
 
 import edu.uoc.ds.traversal.Iterator;
+//import java.util.Iterator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,6 +11,7 @@ import uoc.ds.pr.exceptions.*;
 import uoc.ds.pr.model.*;
 import uoc.ds.pr.util.DateUtils;
 import uoc.ds.pr.model.ParkingReservation;
+
 
 
 public class ShippingLinePR1Test {
@@ -217,7 +219,7 @@ public class ShippingLinePR1Test {
         Assert.assertEquals(9, voyage1.getAvailableParkingSlots());
 
         Client client5 = theShippingLine.getClient("clientId15");
-        Iterator<Reservation> it = client5.reservations();
+        Iterator<Reservation> it = (Iterator<Reservation>) client5.reservations();
         Assert.assertTrue(it.hasNext());
         Reservation reservation = it.next();
         Assert.assertEquals("voyageId1", reservation.getVoyage().getId());

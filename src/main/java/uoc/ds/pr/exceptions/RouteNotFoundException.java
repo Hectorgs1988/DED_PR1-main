@@ -1,4 +1,4 @@
 package uoc.ds.pr.exceptions;
 
-public class RouteNotFoundException extends Exception{
+public class RouteNotFoundException extends DSException{
 }
