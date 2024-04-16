@@ -1,7 +1,8 @@
 package uoc.ds.pr.exceptions;
 
+import java.io.Serial;
+
 public class ShipNotFoundException extends DSException {
-    public ShipNotFoundException(String message) {
-        super(message);
-    }
+    @Serial
+    private static final long serialVersionUID = 120001858310390830L;
 }

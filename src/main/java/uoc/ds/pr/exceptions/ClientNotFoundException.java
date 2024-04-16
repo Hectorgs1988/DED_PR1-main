@@ -4,6 +4,6 @@ import java.io.Serial;
 
 public class ClientNotFoundException extends DSException{
     @Serial
-    private static final long serialVersionUID = 1542368660447023001L;
+    private static final long serialVersionUID = 152474039099346800L;
 
 }

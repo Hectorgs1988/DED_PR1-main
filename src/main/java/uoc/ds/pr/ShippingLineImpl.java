@@ -28,9 +28,9 @@ public class ShippingLineImpl implements ShippingLine {
     @Override
     public void addShip(String id, String name, int nArmChairs, int nCabins2, int nCabins4, int nParkingLots, int unLoadTimeinMinutes) {
 
-        if (ships.size() >= MAX_NUM_SHIPS) {
-            throw new MaxExceededException("Maximum number of ships reached.");
-        }
+       // if (ships.size() >= MAX_NUM_SHIPS) {
+         //   throw new MaxExceededException("Maximum number of ships reached.");
+       // }
         Ship newShip = new Ship(id, name, nArmChairs, nCabins2, nCabins4, nParkingLots, unLoadTimeinMinutes);
         ships.put(id, newShip);
     }
@@ -68,9 +68,9 @@ public class ShippingLineImpl implements ShippingLine {
     @Override
     public void addVoyage(String id, Date departureDt, Date arrivalDt, String idShip, String idRoute) throws ShipNotFoundException, RouteNotFoundException, ParkingFullException, NoAcommodationAvailableException {
         Ship ship = ships.get(idShip);
-        if (ship == null) {
-            throw new ShipNotFoundException("Ship not found with ID: " + idShip);
-        }
+        //if (ship == null) {
+          //  throw new ShipNotFoundException("Ship not found with ID: " + idShip);
+       // }
         Route route = routes.get(idRoute);
         if (route == null) {
            // throw new RouteNotFoundException("Route not found with ID: " + idRoute);
